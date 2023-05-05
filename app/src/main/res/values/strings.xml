@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Word Quest</string>
+    <string name="btnPlayText">Play</string>
+    <string name="btnHowToPlayText">How to play</string>
+    <string name="btnExitText">Exit to main menu</string>
+    <string name="contentDescImageTChest">Treasure chest logo</string>
+</resources>
