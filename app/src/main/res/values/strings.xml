@@ -4,4 +4,16 @@
     <string name="btnHowToPlayText">How to play</string>
     <string name="btnExitText">Exit to main menu</string>
     <string name="contentDescImageTChest">Treasure chest logo</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="txtInputHint">Guess the letter or word</string>
+    <string name="lorem_ipsum">lorem</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="Enter">Enter</string>
+    <string name="alreadyGuessedLettersText">Already guessed letters: </string>
+    <string name="alreadyGuessedWordsText">Already guessed words: </string>
 </resources>
