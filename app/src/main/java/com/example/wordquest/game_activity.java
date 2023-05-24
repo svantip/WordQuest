@@ -3,6 +3,7 @@ package com.example.wordquest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
@@ -58,12 +59,14 @@ public class game_activity extends AppCompatActivity {
                     String alreadyGuessedWords = alreadyGuessedWordsView.getText().toString();
                     //Get lives
                     int lives = Integer.valueOf(txtBoxLives.getText().toString()); //String to integer
+                    boolean pobjeda = false;
                     //Do something with text
                     if(userInput.length() == 1) {
                         //Input is a char
                         alreadyGuessedLetters += userInput; //Displaying already guessed letters
                         alreadyGuessedLettersView.setText(alreadyGuessedLetters);
                         if(word.contains(userInput)) {
+                            pobjeda = true;
                             //Char matches a char inside word
                             for(int i=0;i<word.length();i++) {
                                 //Loop going threw word
@@ -73,6 +76,7 @@ public class game_activity extends AppCompatActivity {
                                     hiddenWordArray[i] = userInput.charAt(0); //Switching the correct char for the userInput char
                                     hiddenWord = String.valueOf(hiddenWordArray); //Switching it back to string
                                 }
+                                if(hiddenWord.charAt(i) == '_') pobjeda = false;
                             }
                             //Setting txtView text to hiddenWord
                             wordToBeGuessed.setText(hiddenWord);
@@ -82,9 +86,6 @@ public class game_activity extends AppCompatActivity {
                             lives--; //Lives -1
                             String livesString = Integer.toString(lives);//Integer to string
                             txtBoxLives.setText(livesString);//Displaying lives in txtView
-                            if(lives == 0){
-                                //Loser screen
-                            }
                         }
                     }else if(userInput.length() == 0){
                         //Input is empty
@@ -92,27 +93,27 @@ public class game_activity extends AppCompatActivity {
                         builder.show();//Show alert
                     }else{
                         //Input is a string
-                        if(userInput.equals(word)){
-                            builder.setMessage("You win") .setTitle(getTitle());//Set alerts title and text
-                            builder.show();//Show alert
-
-                        }
+                        if(userInput.equals(word)) pobjeda = true;
                         else{
                             alreadyGuessedWords+=userInput+" ";
                             alreadyGuessedWordsView.setText(alreadyGuessedWords);
                             lives--; //Lives -1
                             String livesString = Integer.toString(lives);//Integer to string
                             txtBoxLives.setText(livesString);//Displaying lives in txtView
-                            if(lives == 0){
-                                //Loser screen
-                            }
                         }
                     }
                     if(lives == 0){
                         //Loser screen
-                        builder.setMessage("You lose") .setTitle(getTitle());//Set alerts title and text
-                        builder.show();//Show alert
+                        Intent intent = new Intent(game_activity.this, LosingScreen.class);
+                        startActivity(intent);
+                    } else if(pobjeda){
+                        Intent intent = new Intent(game_activity.this, WiningScreen.class);
+                        startActivity(intent);
                     }
+
+                    //int pogodenaSlova = 0;
+                    //for(int i=0;i<word.length();i++) if(hiddenWord.charAt(i) != '_') pogodenaSlova++;
+
                     return true;
                 }
                 return false;
