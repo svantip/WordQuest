@@ -142,7 +142,6 @@ public class game_activity extends AppCompatActivity {
                         Intent intent = new Intent(game_activity.this, WiningScreen.class);
                         startActivity(intent);
                     }
-
                     return true;
                 }
                 return false;
