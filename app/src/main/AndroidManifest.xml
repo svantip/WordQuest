@@ -13,6 +13,9 @@
         android:theme="@style/Theme.WordQuest"
         tools:targetApi="31">
         <activity
+            android:name=".HowToPlay"
+            android:exported="false" />
+        <activity
             android:name=".LosingScreen"
             android:exported="false" />
         <activity

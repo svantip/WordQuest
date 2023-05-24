@@ -5,15 +5,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.KeyEvent;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
 
 public class game_activity extends AppCompatActivity {
     AlertDialog.Builder builder;
+
+    int convertDpToPx (int dp){
+      int px = (int) TypedValue.applyDimension(
+              TypedValue.COMPLEX_UNIT_DIP,
+              dp,
+              getResources().getDisplayMetrics()
+      );
+      return px;
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +55,15 @@ public class game_activity extends AppCompatActivity {
         TextView alreadyGuessedWordsView = (TextView) findViewById(R.id.alreadyGuessedWords);
         EditText txtBoxGuess = (EditText) findViewById(R.id.txtBoxGuess);
         TextView txtBoxLives = findViewById(R.id.txtBoxLives);
+        ImageView imageBoat = findViewById(R.id.imageBoat);
+        ViewGroup.MarginLayoutParams layoutParamsBoat = (ViewGroup.MarginLayoutParams) imageBoat.getLayoutParams();
+        layoutParamsBoat.setMarginStart(convertDpToPx(0));  // Set the desired margin in pixels
+        imageBoat.setLayoutParams(layoutParamsBoat);
+        ImageView imageChest = findViewById(R.id.imageChest);
+        ViewGroup.MarginLayoutParams layoutParamsChest = (ViewGroup.MarginLayoutParams) imageChest.getLayoutParams();
+        layoutParamsChest.setMarginStart(convertDpToPx(185));  // Set the desired margin in pixels
+        imageChest.setLayoutParams(layoutParamsChest);
+
 
 
         //When button send on keyboard is pressed
@@ -59,14 +81,14 @@ public class game_activity extends AppCompatActivity {
                     String alreadyGuessedWords = alreadyGuessedWordsView.getText().toString();
                     //Get lives
                     int lives = Integer.valueOf(txtBoxLives.getText().toString()); //String to integer
-                    boolean pobjeda = false;
+                    boolean win = false;
                     //Do something with text
                     if(userInput.length() == 1) {
                         //Input is a char
                         alreadyGuessedLetters += userInput; //Displaying already guessed letters
                         alreadyGuessedLettersView.setText(alreadyGuessedLetters);
                         if(word.contains(userInput)) {
-                            pobjeda = true;
+                            win = true;
                             //Char matches a char inside word
                             for(int i=0;i<word.length();i++) {
                                 //Loop going threw word
@@ -76,7 +98,7 @@ public class game_activity extends AppCompatActivity {
                                     hiddenWordArray[i] = userInput.charAt(0); //Switching the correct char for the userInput char
                                     hiddenWord = String.valueOf(hiddenWordArray); //Switching it back to string
                                 }
-                                if(hiddenWord.charAt(i) == '_') pobjeda = false;
+                                if(hiddenWord.charAt(i) == '_') win = false;
                             }
                             //Setting txtView text to hiddenWord
                             wordToBeGuessed.setText(hiddenWord);
@@ -93,7 +115,7 @@ public class game_activity extends AppCompatActivity {
                         builder.show();//Show alert
                     }else{
                         //Input is a string
-                        if(userInput.equals(word)) pobjeda = true;
+                        if(userInput.equals(word)) win = true;
                         else{
                             alreadyGuessedWords+=userInput+" ";
                             alreadyGuessedWordsView.setText(alreadyGuessedWords);
@@ -102,17 +124,24 @@ public class game_activity extends AppCompatActivity {
                             txtBoxLives.setText(livesString);//Displaying lives in txtView
                         }
                     }
+
+                    int guessedLetters = 0;
+                    for(int i=0;i<word.length();i++) if(hiddenWord.charAt(i) != '_') guessedLetters++;
+                    if(guessedLetters > 0){
+                        layoutParamsBoat.setMarginStart(convertDpToPx((185/word.length())*guessedLetters));  // Set the desired margin in pixels
+                        imageBoat.setLayoutParams(layoutParamsBoat);
+                        layoutParamsChest.setMarginStart(convertDpToPx(185-((185/word.length())*guessedLetters)));  // Set the desired margin in pixels
+                        imageChest.setLayoutParams(layoutParamsChest);
+                    }
+
                     if(lives == 0){
                         //Loser screen
                         Intent intent = new Intent(game_activity.this, LosingScreen.class);
                         startActivity(intent);
-                    } else if(pobjeda){
+                    } else if(win) {
                         Intent intent = new Intent(game_activity.this, WiningScreen.class);
                         startActivity(intent);
                     }
-
-                    //int pogodenaSlova = 0;
-                    //for(int i=0;i<word.length();i++) if(hiddenWord.charAt(i) != '_') pogodenaSlova++;
 
                     return true;
                 }
