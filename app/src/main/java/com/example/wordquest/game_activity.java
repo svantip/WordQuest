@@ -93,7 +93,8 @@ public class game_activity extends AppCompatActivity {
                     }else{
                         //Input is a string
                         if(userInput.equals(word)){
-                            //Winner screen
+                            builder.setMessage("You win") .setTitle(getTitle());//Set alerts title and text
+                            builder.show();//Show alert
 
                         }
                         else{
@@ -106,6 +107,11 @@ public class game_activity extends AppCompatActivity {
                                 //Loser screen
                             }
                         }
+                    }
+                    if(lives == 0){
+                        //Loser screen
+                        builder.setMessage("You lose") .setTitle(getTitle());//Set alerts title and text
+                        builder.show();//Show alert
                     }
                     return true;
                 }
