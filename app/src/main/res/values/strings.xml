@@ -16,4 +16,7 @@
     <string name="Enter">Enter</string>
     <string name="alreadyGuessedLettersText">Already guessed letters: </string>
     <string name="alreadyGuessedWordsText">Already guessed words: </string>
+    <string name="btnPlayAgain">Play again</string>
+    <string name="youWin">YOU WIN</string>
+    <string name="youLose">YOU LOSE</string>
 </resources>

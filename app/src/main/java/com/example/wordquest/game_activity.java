@@ -42,7 +42,7 @@ public class game_activity extends AppCompatActivity {
         TextView alreadyGuessedWordsView = (TextView) findViewById(R.id.alreadyGuessedWords);
         EditText txtBoxGuess = (EditText) findViewById(R.id.txtBoxGuess);
         TextView txtBoxLives = findViewById(R.id.txtBoxLives);
-        
+
 
         //When button send on keyboard is pressed
         txtBoxGuess.setOnEditorActionListener(new TextView.OnEditorActionListener() {
