@@ -13,10 +13,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Random;
 
 public class game_activity extends AppCompatActivity {
     AlertDialog.Builder builder;
+    FirebaseFirestore firestore;
 
     int convertDpToPx (int dp){
       int px = (int) TypedValue.applyDimension(
@@ -31,7 +34,9 @@ public class game_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        //Making the alert for displaying msg when user input is empty
+        firestore = FirebaseFirestore.getInstance();
+
+        //Making the alk:''ert for displaying msg when user input is empty
         builder = new AlertDialog.Builder(this);
         //Generate random word for testing -change later to display from database-
         String[] words = {"apple", "banana", "carrot", "dragon", "elephant", "flower", "guitar", "house", "island", "jacket"};

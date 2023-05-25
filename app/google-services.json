@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1018926219632",
+    "project_id": "wordquest-7c79c",
+    "storage_bucket": "wordquest-7c79c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018926219632:android:2c7d24f6d91b73b2ee4fb5",
+        "android_client_info": {
+          "package_name": "com.example.wordquest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1018926219632-l1rhu1g55b69k2odqtc6r840c198088d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfnKH7pF1givRmgelAH_RE8opB-46I0rY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1018926219632-l1rhu1g55b69k2odqtc6r840c198088d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
