@@ -18,7 +18,6 @@ import java.util.Random;
 
 public class game_activity extends AppCompatActivity {
     AlertDialog.Builder builder;
-    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     String word;
 
     int convertDpToPx (int dp){
@@ -30,36 +29,22 @@ public class game_activity extends AppCompatActivity {
       return px;
     };
 
-    public void getWords(){
-        CollectionReference words = firestore.collection("words");
-        words.get().addOnCompleteListener(task -> {
-            if(task.isSuccessful() && task.getResult().getDocuments().size() > 0)
-            {
-                Random random = new Random();
-                int index = random.nextInt(5);
-                //Word that user needs to guess
-                word = task.getResult().getDocuments().get(index).get("word").toString();
-            }
-            else
-            {
-                word = "kurac";
-            }
-        });
-
-        if(word == null)word = "prazno";
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         FirebaseApp.initializeApp(this);
-        firestore = FirebaseFirestore.getInstance();
 
         //Making the alk:''ert for displaying msg when user input is empty
         builder = new AlertDialog.Builder(this);
 
-        getWords();
+        //Array of all words
+        String[] words = {"apple", "guitar", "jacket", "elephant", "carrot", "dragon", "house", "banana", "island", "flower"};
+
+        //Getting a random word
+        Random random = new Random();
+        int index = random.nextInt(words.length);
+        String word = words[index];
 
         //Making the "_" signs instead of displaying the word
         String hiddenWord = "";
@@ -77,13 +62,14 @@ public class game_activity extends AppCompatActivity {
         TextView alreadyGuessedWordsView = (TextView) findViewById(R.id.alreadyGuessedWords);
         EditText txtBoxGuess = (EditText) findViewById(R.id.txtBoxGuess);
         TextView txtBoxLives = findViewById(R.id.txtBoxLives);
+        //Setting a starting position for the boat and the chest
         ImageView imageBoat = findViewById(R.id.imageBoat);
         ViewGroup.MarginLayoutParams layoutParamsBoat = (ViewGroup.MarginLayoutParams) imageBoat.getLayoutParams();
-        layoutParamsBoat.setMarginStart(convertDpToPx(0));  // Set the desired margin in pixels
+        layoutParamsBoat.setMarginStart(convertDpToPx(0));
         imageBoat.setLayoutParams(layoutParamsBoat);
         ImageView imageChest = findViewById(R.id.imageChest);
         ViewGroup.MarginLayoutParams layoutParamsChest = (ViewGroup.MarginLayoutParams) imageChest.getLayoutParams();
-        layoutParamsChest.setMarginStart(convertDpToPx(185));  // Set the desired margin in pixels
+        layoutParamsChest.setMarginStart(convertDpToPx(185));
         imageChest.setLayoutParams(layoutParamsChest);
 
 
@@ -147,12 +133,13 @@ public class game_activity extends AppCompatActivity {
                         }
                     }
 
+                    //Moving the boat
                     int guessedLetters = 0;
                     for(int i=0;i<word.length();i++) if(hiddenWord.charAt(i) != '_') guessedLetters++;
                     if(guessedLetters > 0){
-                        layoutParamsBoat.setMarginStart(convertDpToPx((185/word.length())*guessedLetters));  // Set the desired margin in pixels
+                        layoutParamsBoat.setMarginStart(convertDpToPx((185/word.length())*guessedLetters));
                         imageBoat.setLayoutParams(layoutParamsBoat);
-                        layoutParamsChest.setMarginStart(convertDpToPx(185-(185/word.length())*guessedLetters));  // Set the desired margin in pixels
+                        layoutParamsChest.setMarginStart(convertDpToPx(185-(185/word.length())*guessedLetters));
                         imageChest.setLayoutParams(layoutParamsChest);
                     }
 
@@ -162,6 +149,7 @@ public class game_activity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else if(win) {
+                        //Wining screen
                         Intent intent = new Intent(game_activity.this, WiningScreen.class);
                         startActivity(intent);
                         finish();
@@ -173,6 +161,4 @@ public class game_activity extends AppCompatActivity {
         });
 
     }
-
-
 }
