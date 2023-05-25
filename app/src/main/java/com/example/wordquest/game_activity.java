@@ -1,11 +1,9 @@
 package com.example.wordquest;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
@@ -13,25 +11,15 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.protobuf.NullValue;
-
-import java.util.List;
 import java.util.Random;
 
 public class game_activity extends AppCompatActivity {
     AlertDialog.Builder builder;
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     String word;
-    String[] words = {};
 
     int convertDpToPx (int dp){
       int px = (int) TypedValue.applyDimension(
@@ -42,13 +30,25 @@ public class game_activity extends AppCompatActivity {
       return px;
     };
 
-    /*List<DocumentSnapshot> documents = querySnapshot.getDocuments();
-    int randomIndex = new Random().nextInt(documents.size());
-    DocumentSnapshot randomDocument = documents.get(randomIndex);
-    Object randomValue = randomDocument.get("word");
-                            if (randomValue != null) {
-        word = randomValue.toString();
-    }*/
+    public void getWords(){
+        CollectionReference words = firestore.collection("words");
+        words.get().addOnCompleteListener(task -> {
+            if(task.isSuccessful() && task.getResult().getDocuments().size() > 0)
+            {
+                Random random = new Random();
+                int index = random.nextInt(5);
+                //Word that user needs to guess
+                word = task.getResult().getDocuments().get(index).get("word").toString();
+            }
+            else
+            {
+                word = "kurac";
+            }
+        });
+
+        if(word == null)word = "prazno";
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,31 +58,8 @@ public class game_activity extends AppCompatActivity {
 
         //Making the alk:''ert for displaying msg when user input is empty
         builder = new AlertDialog.Builder(this);
-        //Generate random word for testing -change later to display from database-
-        //String[] words = {"apple", "banana", "carrot", "dragon", "elephant", "flower", "guitar", "house", "island", "jacket"};
 
-        firestore.collection("words")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            int brc = 0;
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                words[brc] = document.get("word").toString();
-                                brc++;
-                            }
-                        } else {
-                            Log.w("Error","Error getting documents.", task.getException());
-                        }
-                    }
-                });
-
-        if(words == null)words[0] = "prazno";
-        Random random = new Random();
-        int index = random.nextInt(words.length);
-        //Word that user needs to guess
-        word = words[index];
+        getWords();
 
         //Making the "_" signs instead of displaying the word
         String hiddenWord = "";
@@ -183,9 +160,11 @@ public class game_activity extends AppCompatActivity {
                         //Loser screen
                         Intent intent = new Intent(game_activity.this, LosingScreen.class);
                         startActivity(intent);
+                        finish();
                     } else if(win) {
                         Intent intent = new Intent(game_activity.this, WiningScreen.class);
                         startActivity(intent);
+                        finish();
                     }
                     return true;
                 }

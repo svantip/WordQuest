@@ -19,6 +19,7 @@ public class WiningScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(WiningScreen.this, game_activity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -26,8 +27,7 @@ public class WiningScreen extends AppCompatActivity {
         btnMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(WiningScreen.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

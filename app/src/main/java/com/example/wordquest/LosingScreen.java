@@ -19,6 +19,7 @@ public class LosingScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LosingScreen.this, game_activity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -26,8 +27,7 @@ public class LosingScreen extends AppCompatActivity {
         btnMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LosingScreen.this, MainActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }
