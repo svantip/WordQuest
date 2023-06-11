@@ -16,16 +16,29 @@ public class UnitTest {
         Assert.assertEquals(expectedHiddenWord, word);
    }
    @Test
-   public void changeHiddenWord(){
+   public void changeHiddenWordWithChar(){
        String expectedHiddenWord = "_pp__";
        String word = "apple";
        String userInput = "p";
        String hiddenWord = "_____";
 
-       String output = changeHiddenWord(word, userInput, hiddenWord);
+       String output = changeHiddenWordWithChar(word, userInput, hiddenWord);
        Assert.assertEquals(expectedHiddenWord, output);
    }
-    public String changeHiddenWord(String word, String userInput, String hiddenWord) {
+
+    @Test
+    public void changeHiddenWordWithString() {
+        String word = "apple";
+        String userInput = "apple";
+        String hiddenWord = "____";
+        String expectedHiddenWord = "apple";
+        int lives = 3;
+
+        String output = changeHiddenWordWithString(word, userInput, hiddenWord, lives);
+        Assert.assertEquals(output, expectedHiddenWord);
+    }
+
+    public String changeHiddenWordWithChar(String word, String userInput, String hiddenWord) {
        if (word.contains(userInput)) {
            //Char matches a char inside word
            for (int i = 0; i < word.length(); i++) {
@@ -42,6 +55,19 @@ public class UnitTest {
        }
        return hiddenWord;
    }
+
+    private String changeHiddenWordWithString (String word, String userInput, String hiddenWord, int lives) {
+        boolean win = false;
+        if (userInput.equals(word)) {
+            // Word guessed correctly
+            win = true;
+            hiddenWord = word;
+        } else {
+            lives--;
+        }
+        return hiddenWord;
+    }
+
    public String makeHiddenWord(String word)
    {
        String hiddenWord = "";

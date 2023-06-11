@@ -5,7 +5,6 @@ import static org.mockito.Mockito.when;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.Build;
 import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,12 +17,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.annotation.Config;
 
 @RunWith(AndroidJUnit4.class)
-@Config(sdk = {Build.VERSION_CODES.O_MR1})
-public class Unit2Test {
 
+public class MediumTest {
     @Mock
     private ImageView mockImageBoat;
 

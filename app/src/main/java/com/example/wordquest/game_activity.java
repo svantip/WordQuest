@@ -1,6 +1,5 @@
 package com.example.wordquest;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +10,15 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Random;
 
 
 public class game_activity extends AppCompatActivity {
     AlertDialog.Builder builder;
-    String word;
+    public static String word;
 
     int convertDpToPx (int dp){
       int px = (int) TypedValue.applyDimension(
@@ -27,22 +29,32 @@ public class game_activity extends AppCompatActivity {
       return px;
     }
 
+    public static void setWord(String word) {
+        game_activity.word = word;
+    }
+
+    public static String getWord()
+    {
+        return game_activity.word;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        //Making the alk:''ert for displaying msg when user input is empty
+        //Making the alert for displaying msg when user input is empty
         builder = new AlertDialog.Builder(this);
 
-        //Array of all words
-        String[] words = {"apple", "guitar", "jacket", "elephant", "carrot", "dragon", "house", "banana", "island", "flower"};
+        if (word == null) {
+            // Array of all words
+            String[] words = {"apple", "guitar", "jacket", "elephant", "carrot", "dragon", "house", "banana", "island", "flower"};
 
-        //Getting a random word
-        Random random = new Random();
-        int index = random.nextInt(words.length);
-        String word = words[index];
+            // Getting a random word
+            Random random = new Random();
+            int index = random.nextInt(words.length);
+            setWord(words[index]);
+        }
 
         //Making the "_" signs instead of displaying the word
         String hiddenWord = "";
@@ -54,6 +66,7 @@ public class game_activity extends AppCompatActivity {
         TextView wordToBeGuessed = (TextView) findViewById(R.id.txtBoxWordToBeGuessed);
         wordToBeGuessed.setLetterSpacing(0.2f);
         wordToBeGuessed.setText(hiddenWord);
+
 
         TextView alreadyGuessedLettersView = (TextView) findViewById(R.id.alreadyGuessedLetters);
         alreadyGuessedLettersView.setLetterSpacing(0.2f);
@@ -159,4 +172,6 @@ public class game_activity extends AppCompatActivity {
         });
 
     }
+
+
 }
