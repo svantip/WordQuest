@@ -24,21 +24,37 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.891" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-130dp"
+        android:layout_marginBottom="98dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cropped" />
+
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="300dp"
-        android:layout_height="438dp"
+        android:layout_width="342dp"
+        android:layout_height="392dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="58dp"
         android:layout_marginEnd="55dp"
         android:layout_marginBottom="82dp"
-        android:text="When you enter the game a random word will be displayed without the letters shown you need to guess letter by letter or guess the whole word. Each letter you guess the ship will get closer to the treasure. \nHappy treasure hunt!"
+        android:fontFamily="serif"
+        android:text="Welcome to Word Quest!\n\n When you enter the game a random word will be displayed without the letters shown, you need to guess letter by letter or guess the whole word. \nEach letter you guess you help the ship get closer to the treasure. \n\nHappy treasure hunt!"
         android:textAlignment="center"
         android:textSize="24sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/btnMainMenu2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.391" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="bgColor">#e9cd8c</color>
-    <color name="btnColor">#ad432a</color>
-    <color name="btnTextColor">#fffac5</color>
+    <color name="btnColor">#525554</color>
+    <color name="btnTextColor">#ffffff</color>
     <color name="bgColorGame">#8ca8e9</color>
 </resources>

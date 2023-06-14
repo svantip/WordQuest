@@ -11,86 +11,120 @@
         android:id="@+id/imageView"
         android:layout_width="333dp"
         android:layout_height="203dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/contentDescImageTChest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/treasurechest"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@drawable/vecteezy_pirate_clipart_design_illustration_9399229_541"
         tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@drawable/treasurechest" />
+        tools:srcCompat="@drawable/vecteezy_pirate_clipart_design_illustration_9399229_541" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="385dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginBottom="26dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/contentDescImageTChest"
+        android:scaleX="1.2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/cropped" />
 
     <Button
         android:id="@+id/btnPlay"
         android:layout_width="245dp"
         android:layout_height="55dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="@color/btnColor"
         android:fontFamily="serif"
         android:text="@string/btnPlayText"
         android:textColor="@color/btnTextColor"
+        android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnHowToPlay"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:strokeWidth="3.5dp" />
 
     <Button
         android:id="@+id/btnHowToPlay"
         android:layout_width="245dp"
         android:layout_height="55dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/btnColor"
         android:fontFamily="serif"
         android:text="@string/btnHowToPlayText"
         android:textColor="@color/btnTextColor"
+        android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnExit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/btnPlay"
+        app:layout_constraintStart_toStartOf="@+id/btnPlay"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlay"
+        app:strokeWidth="3.5dp" />
 
     <Button
         android:id="@+id/btnExit"
         android:layout_width="245dp"
         android:layout_height="55dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/btnColor"
         android:fontFamily="serif"
         android:text="Exit"
         android:textColor="@color/btnTextColor"
+        android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/btnHowToPlay"
+        app:layout_constraintStart_toStartOf="@+id/btnHowToPlay"
+        app:layout_constraintTop_toBottomOf="@+id/btnHowToPlay"
+        app:strokeWidth="3.5dp" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="338dp"
         android:layout_height="110dp"
         android:contentDescription="@string/contentDescImageTChest"
-        app:layout_constraintBottom_toTopOf="@+id/imageView7"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/wordquesttitle__3_" />
+        app:srcCompat="@drawable/wordquest2" />
+
+    <TextView
+        android:id="@+id/textViewGold"
+        android:layout_width="53dp"
+        android:layout_height="28dp"
+        android:textAlignment="viewEnd"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="49dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icons8_treasure_64"
+        tools:srcCompat="@drawable/icons8_treasure_64" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:srcCompat="@drawable/icons8_coin_64" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
