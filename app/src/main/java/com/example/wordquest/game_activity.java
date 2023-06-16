@@ -13,15 +13,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +30,7 @@ public class game_activity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static String word;
     public String hiddenWord = "";
-
-    List<String> documents = new ArrayList<String>();
+    List<String> documents = new ArrayList<>();
     public String getAndroidID()
     {
         @SuppressLint("HardwareIds") String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -44,19 +39,16 @@ public class game_activity extends AppCompatActivity {
 
     public void getWordsFromDb() {
         CollectionReference ref = db.collection("words");
-        ref.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        documents.add(Objects.requireNonNull(document.get("word")).toString());
-                    }
-                    startGameActivity();
+        ref.get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    documents.add(Objects.requireNonNull(document.get("word")).toString());
                 }
-                else
-                {
-                    Log.e("TAG","Error getting documents: ", task.getException());
-                }
+                startGameActivity();
+            }
+            else
+            {
+                Log.e("TAG","Error getting documents: ", task.getException());
             }
         });
     }
@@ -70,6 +62,8 @@ public class game_activity extends AppCompatActivity {
     }
 
     private void startGameActivity(){
+        MyPreferences myPreferences = new MyPreferences(game_activity.this);
+
         //Making the alert for displaying msg when user input is empty
         builder = new AlertDialog.Builder(this);
 
@@ -85,17 +79,24 @@ public class game_activity extends AppCompatActivity {
         }
 
         //Displaying the hidden word in text view
-        TextView wordToBeGuessed = (TextView) findViewById(R.id.txtBoxWordToBeGuessed);
+        TextView wordToBeGuessed = findViewById(R.id.txtBoxWordToBeGuessed);
         wordToBeGuessed.setLetterSpacing(0.2f);
         wordToBeGuessed.setText(hiddenWord);
 
-        TextView alreadyGuessedLettersView = (TextView) findViewById(R.id.alreadyGuessedLetters);
+        TextView alreadyGuessedLettersView = findViewById(R.id.alreadyGuessedLetters);
         alreadyGuessedLettersView.setLetterSpacing(0.2f);
-        TextView alreadyGuessedWordsView = (TextView) findViewById(R.id.alreadyGuessedWords);
-        EditText txtBoxGuess = (EditText) findViewById(R.id.txtBoxGuess);
+        TextView alreadyGuessedWordsView = findViewById(R.id.alreadyGuessedWords);
+        EditText txtBoxGuess = findViewById(R.id.txtBoxGuess);
         TextView txtBoxLives = findViewById(R.id.txtBoxLives);
         //Setting a starting position for the boat and the chest
         ImageView imageBoat = findViewById(R.id.imageBoat);
+
+            String imageName = myPreferences.getCurrentSkin();
+            if(getResources().getIdentifier(imageName, "drawable", getPackageName())!=0) {
+                int resourceId = getResources().getIdentifier(imageName, "drawable", getPackageName());
+                imageBoat.setImageResource(resourceId);
+            }
+
         ViewGroup.MarginLayoutParams layoutParamsBoat = (ViewGroup.MarginLayoutParams) imageBoat.getLayoutParams();
         layoutParamsBoat.setMarginStart(convertDpToPx(0));
         imageBoat.setLayoutParams(layoutParamsBoat);
@@ -178,6 +179,9 @@ public class game_activity extends AppCompatActivity {
                     finish();
                 } else if(win) {
                     //Wining screen
+                    int points = Integer.parseInt(myPreferences.getPoints());
+                    points += 100*lives;
+                    myPreferences.savePoints(String.valueOf(points), getAndroidID());
                     Intent intent = new Intent(game_activity.this, WiningScreen.class);
                     startActivity(intent);
                     finish();
@@ -192,8 +196,11 @@ public class game_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(game_activity.this, MainActivity.class);
+            startActivity(intent);
+        });
         getWordsFromDb();
-
     }
 }

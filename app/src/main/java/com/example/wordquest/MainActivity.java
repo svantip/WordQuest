@@ -8,13 +8,16 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -79,16 +82,42 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot documentSnapshot = task.getResult();
                         if (documentSnapshot != null && documentSnapshot.exists()) {
-                            myPreferences.savePoints(Objects.requireNonNull(documentSnapshot.get("points")).toString());
+                            myPreferences.savePoints(Objects.requireNonNull(documentSnapshot.get("points")).toString(), getAndroidID());
                         } else {
                             assert documentSnapshot != null;
-                            myPreferences.savePoints(Objects.requireNonNull(documentSnapshot.get("points")).toString());
+                            myPreferences.savePoints(Objects.requireNonNull(documentSnapshot.get("points")).toString(), getAndroidID());
                             Log.d(TAG, "Document does not exist");
                         }
                     } else {
                         Log.w(TAG, "Error getting documents.", task.getException());
                     }
                 });
+    }
+
+    public void createSubcollectionBoatsAndCheckIfItExists()
+    {
+        CollectionReference ref = db.collection("players").document(getAndroidID()).collection("boats");
+        ref.get().addOnCompleteListener(task -> {
+            if(task.isSuccessful()) {
+                QuerySnapshot documents = task.getResult();
+                if (documents != null && !documents.isEmpty()){
+                    Log.d(TAG,"Document boats already exists");
+                }
+                else{
+                    Log.d(TAG,"Document boat doesn't exist");
+                    Map<String, Object> playerData = new HashMap<>();
+                    playerData.put("skin","");
+                    db.collection("players").document(getAndroidID()).collection("boats").document()
+                            .set(playerData)
+                            .addOnSuccessListener(aVoid-> Log.d(TAG, "Boat document created successfully"))
+                            .addOnFailureListener(e -> {Log.e(TAG, "Error creating boat document", e);});
+                }
+            }
+            else
+            {
+                Log.e("TAG","Error getting documents: ", task.getException());
+            }
+        });
     }
 
     @Override
@@ -99,13 +128,16 @@ public class MainActivity extends AppCompatActivity {
 
         createPlayerAndCheckIfExistsToDb();
         setPointsToMyPreferencesFromDb();
+        createSubcollectionBoatsAndCheckIfItExists();
 
-        TextView textViewGold = (TextView) findViewById(R.id.textViewGold);
+        TextView textViewGold = findViewById(R.id.textViewGold);
         textViewGold.setText(myPreferences.getPoints());
 
-        Button btnPlay = (Button) findViewById(R.id.btnPlay);
-        Button btnHowToPlay = (Button) findViewById(R.id.btnHowToPlay);
-        Button btnExit = (Button) findViewById(R.id.btnExit);
+        Button btnPlay = findViewById(R.id.btnPlay);
+        Button btnHowToPlay = findViewById(R.id.btnHowToPlay);
+        Button btnExit = findViewById(R.id.btnExit);
+        ImageView btnShop = findViewById(R.id.btnShop);
+
         btnPlay.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, game_activity.class);
             startActivity(intent);
@@ -119,6 +151,41 @@ public class MainActivity extends AppCompatActivity {
         btnExit.setOnClickListener(view -> {
             finish(); // Close the current activity and exit the application
         });
+
+        btnShop.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ShopActivity.class);
+            startActivity(intent);
+        });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        TextView textViewGold = findViewById(R.id.textViewGold);
+        textViewGold.setText(myPreferences.getPoints());
+        Button btnPlay = findViewById(R.id.btnPlay);
+        Button btnHowToPlay = findViewById(R.id.btnHowToPlay);
+        Button btnExit = findViewById(R.id.btnExit);
+        ImageView btnShop = findViewById(R.id.btnShop);
+
+
+        btnPlay.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, game_activity.class);
+            startActivity(intent);
+        });
+
+        btnHowToPlay.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, HowToPlay.class);
+            startActivity(intent);
+        });
+
+        btnExit.setOnClickListener(view -> {
+            finishAffinity(); // Close the current activity and exit the application
+        });
+
+        btnShop.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ShopActivity.class);
+            startActivity(intent);
+        });
+    }
 }

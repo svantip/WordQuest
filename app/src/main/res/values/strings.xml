@@ -19,4 +19,15 @@
     <string name="btnPlayAgain">Play again</string>
     <string name="youWin">YOU WIN</string>
     <string name="youLose">YOU LOSE</string>
+    <string name="btnBuy">BUY</string>
+    <string name="btnApply">APPLY</string>
+    <string name="default_ship">Default ship</string>
+    <string name="default_boat_desc">Default boat</string>
+    <string name="apply">APPLY</string>
+    <string name="button_back">button back</string>
+    <string name="icon_coin">icon coin</string>
+    <string name="shop_default_skin">shop default skin</string>
+    <string name="sailboat_shop_title">Sailboat 500$</string>
+    <string name="shop_fisherman_skin">shop fisherman skin</string>
+    <string name="shop_fisherman_title_price">Fisherman 500$</string>
 </resources>

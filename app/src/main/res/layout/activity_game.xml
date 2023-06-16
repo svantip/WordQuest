@@ -7,6 +7,17 @@
     android:background="@color/bgColor"
     tools:context=".game_activity">
 
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="49dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icons8_back_96"
+        tools:srcCompat="@drawable/icons8_back_96" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -15,12 +26,12 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="2dp"
+        android:scaleX="2.4"
+        android:scaleY="2.4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtBoxLives"
-        app:srcCompat="@drawable/child_beach_illustration_vector_sea_mountains_3735c387d58ed9a8fba92de113f2b01e"
-        android:scaleX="2.4"
-        android:scaleY="2.4"/>
+        app:srcCompat="@drawable/child_beach_illustration_vector_sea_mountains_3735c387d58ed9a8fba92de113f2b01e" />
 
     <ImageView
         android:id="@+id/imageView10"
@@ -50,6 +61,7 @@
         android:layout_marginTop="175dp"
         android:hint="@string/txtInputHint"
         android:imeOptions="actionSend"
+        android:textColor="@color/black"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="@+id/imageView10"
         app:layout_constraintHorizontal_bias="0.496"
@@ -62,6 +74,7 @@
         android:layout_height="wrap_content"
         android:text="@string/alreadyGuessedLettersText"
         android:textAlignment="textStart"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="@+id/txtBoxGuess"
         app:layout_constraintTop_toBottomOf="@+id/txtBoxGuess" />
 
@@ -79,6 +92,7 @@
         android:layout_height="wrap_content"
         android:text="@string/alreadyGuessedWordsText"
         android:textAlignment="textStart"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -104,12 +118,13 @@
 
         <ImageView
             android:id="@+id/imageBoat"
-            android:layout_width="91dp"
+            android:layout_width="90dp"
             android:layout_height="match_parent"
             android:layout_marginStart="0dp"
             android:contentDescription="@string/contentDescImageTChest"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/kisspng_piracy_drawing_party_coloring_book_boat_pirate_5ab5efebb72bc0_2784802715218728757503" />
+            app:srcCompat="@drawable/default_ship"
+            tools:srcCompat="@drawable/default_ship" />
 
         <ImageView
             android:id="@+id/imageChest"
@@ -128,6 +143,7 @@
         android:layout_marginStart="175dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="176dp"
+        android:textColor="@color/black"
         android:text="Lives left:"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,6 +157,7 @@
         android:layout_marginTop="4dp"
         android:text="5"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="@+id/textView2"
