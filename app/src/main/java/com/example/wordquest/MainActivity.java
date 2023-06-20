@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     db.collection("players").document(getAndroidID()).collection("boats").document()
                             .set(playerData)
                             .addOnSuccessListener(aVoid-> Log.d(TAG, "Boat document created successfully"))
-                            .addOnFailureListener(e -> {Log.e(TAG, "Error creating boat document", e);});
+                            .addOnFailureListener(e -> Log.e(TAG, "Error creating boat document", e));
                 }
             }
             else
