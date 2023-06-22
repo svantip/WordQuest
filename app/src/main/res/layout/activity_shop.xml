@@ -9,12 +9,13 @@
 
     <TextView
         android:id="@+id/textViewGold"
-        android:layout_width="53dp"
+        android:layout_width="wrap_content"
         android:layout_height="28dp"
+        android:layout_marginEnd="30dp"
         android:textAlignment="viewEnd"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
     <ImageView
@@ -32,24 +33,22 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:contentDescription="@string/icon_coin"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:contentDescription="@string/icon_coin"
         app:layout_constraintBottom_toBottomOf="@+id/btnBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewGold"
         app:layout_constraintTop_toTopOf="@+id/btnBack"
-        app:srcCompat="@drawable/icons8_coin_64" />
+        app:srcCompat="@drawable/icons8_coin_645" />
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="600dp"
+        android:layout_marginTop="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -113,9 +112,9 @@
 
                     <ImageView
                         android:id="@+id/imageView91"
-                        android:contentDescription="@string/shop_default_skin"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/shop_default_skin"
                         app:srcCompat="@drawable/lol" />
 
                     <LinearLayout
@@ -172,9 +171,9 @@
                         android:id="@+id/imageView92"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/shop_fisherman_skin"
                         app:srcCompat="@drawable/fisherman"
-                        tools:srcCompat="@drawable/fisherman"
-                        android:contentDescription="@string/shop_fisherman_skin"/>
+                        tools:srcCompat="@drawable/fisherman" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -214,19 +213,177 @@
 
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/bgColor"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageViewPC"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/shop_fisherman_skin"
+                        app:srcCompat="@drawable/pc"
+                        tools:srcCompat="@drawable/pc" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="@string/pirate_crew_1000"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/btnBuyPC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/btnBuy"
+                            android:text="@string/btnBuy"
+                            android:textColor="@color/black"
+                            app:strokeWidth="3.5dp" />
+
+                        <Button
+                            android:id="@+id/btnApplyPC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/btnApply"
+                            android:text="@string/apply"
+                            android:textColor="@color/black"
+                            android:visibility="gone"
+                            app:strokeWidth="3.5dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/bgColor"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageViewKids"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/shop_fisherman_skin"
+                        app:srcCompat="@drawable/kids"
+                        tools:srcCompat="@drawable/kids" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="@string/dragon_squad_1000"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/btnBuyKids"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/btnBuy"
+                            android:text="@string/btnBuy"
+                            android:textColor="@color/black"
+                            app:strokeWidth="3.5dp" />
+
+                        <Button
+                            android:id="@+id/btnApplyKids"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/btnApply"
+                            android:text="@string/apply"
+                            android:textColor="@color/black"
+                            android:visibility="gone"
+                            app:strokeWidth="3.5dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/bgColor"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView1P"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/shop_fisherman_skin"
+                        app:srcCompat="@drawable/op"
+                        tools:srcCompat="@drawable/op" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:text="@string/thousand_sunny_1000000"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/btnBuy1P"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/btnBuy"
+                            android:text="@string/btnBuy"
+                            android:textColor="@color/black"
+                            app:strokeWidth="3.5dp" />
+
+                        <Button
+                            android:id="@+id/btnApply1P"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/btnApply"
+                            android:text="@string/apply"
+                            android:textColor="@color/black"
+                            android:visibility="gone"
+                            app:strokeWidth="3.5dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
         </LinearLayout>
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
-        app:layout_constraintEnd_toStartOf="@+id/imageView8"
-        app:layout_constraintHorizontal_bias="0.634"
-        app:layout_constraintStart_toEndOf="@+id/btnBack"
-        app:layout_constraintTop_toTopOf="@+id/btnBack"
-        app:srcCompat="@drawable/icons8_treasure_64"
-        android:contentDescription="@string/contentDescImageTChest"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

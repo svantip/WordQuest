@@ -1,13 +1,18 @@
 package com.example.wordquest;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +36,7 @@ public class game_activity extends AppCompatActivity {
     public static String word;
     public String hiddenWord = "";
     List<String> documents = new ArrayList<>();
+
     public String getAndroidID()
     {
         @SuppressLint("HardwareIds") String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -61,17 +67,15 @@ public class game_activity extends AppCompatActivity {
         );
     }
 
+
+
     private void startGameActivity(){
         MyPreferences myPreferences = new MyPreferences(game_activity.this);
-
         //Making the alert for displaying msg when user input is empty
         builder = new AlertDialog.Builder(this);
-
         Random random = new Random();
         int index = random.nextInt(documents.size());
-
         word = documents.get(index);
-
         //Making the "_" signs instead of displaying the word
         for(int i = 0;i<word.length();i++)
         {
@@ -100,6 +104,7 @@ public class game_activity extends AppCompatActivity {
         ViewGroup.MarginLayoutParams layoutParamsBoat = (ViewGroup.MarginLayoutParams) imageBoat.getLayoutParams();
         layoutParamsBoat.setMarginStart(convertDpToPx(0));
         imageBoat.setLayoutParams(layoutParamsBoat);
+
         ImageView imageChest = findViewById(R.id.imageChest);
         ViewGroup.MarginLayoutParams layoutParamsChest = (ViewGroup.MarginLayoutParams) imageChest.getLayoutParams();
         layoutParamsChest.setMarginStart(convertDpToPx(185));
@@ -152,6 +157,8 @@ public class game_activity extends AppCompatActivity {
                     builder.show();//Show alert
                 }else{
                     //Input is a string
+                    hiddenWord1 = word;
+                    wordToBeGuessed.setText(hiddenWord1);
                     if(userInput.equals(word)) win = true;
                     else{
                         alreadyGuessedWords+=userInput+" ";
@@ -162,30 +169,55 @@ public class game_activity extends AppCompatActivity {
                     }
                 }
 
-                //Moving the boat
+                // Moving the boat
+                int boatStartPosition = layoutParamsBoat.getMarginStart();
                 int guessedLetters = 0;
-                for(int i=0;i<word.length();i++) if(hiddenWord1.charAt(i) != '_') guessedLetters++;
-                if(guessedLetters > 0){
-                    layoutParamsBoat.setMarginStart(convertDpToPx((185/word.length())*guessedLetters));
-                    imageBoat.setLayoutParams(layoutParamsBoat);
-                    layoutParamsChest.setMarginStart(convertDpToPx(185-(185/word.length())*guessedLetters));
-                    imageChest.setLayoutParams(layoutParamsChest);
+                for (int i = 0; i < word.length(); i++) {
+                    if (hiddenWord1.charAt(i) != '_') {
+                        guessedLetters++;
+                    }
                 }
 
-                if(lives == 0){
-                    //Loser screen
-                    Intent intent = new Intent(game_activity.this, LosingScreen.class);
-                    startActivity(intent);
-                    finish();
-                } else if(win) {
-                    //Wining screen
-                    int points = Integer.parseInt(myPreferences.getPoints());
-                    points += 100*lives;
-                    myPreferences.savePoints(String.valueOf(points), getAndroidID());
-                    Intent intent = new Intent(game_activity.this, WiningScreen.class);
-                    startActivity(intent);
-                    finish();
+                if (guessedLetters > 0 ) {
+                    int targetPosition = convertDpToPx((185 / word.length()) * guessedLetters);
+
+                    // Create an ObjectAnimator to animate the boat's position
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(imageBoat, "translationX", boatStartPosition, targetPosition);
+                    animator.setDuration(500); // Set the duration of the animation in milliseconds
+                    animator.setInterpolator(new AccelerateDecelerateInterpolator()); // Apply an interpolator for smooth acceleration and deceleration
+                    animator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            layoutParamsBoat.setMarginStart(targetPosition);
+
+                        }
+                    });
+                    // Start the animation
+                    animator.start();
                 }
+                int finalLives = lives;
+                boolean finalWin = win;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(finalLives == 0){
+                            //Loser screen
+                            Intent intent = new Intent(game_activity.this, LosingScreen.class);
+                            startActivity(intent);
+                            finish();
+                        } else if(finalWin) {
+                            //Wining screen
+                            int points = Integer.parseInt(myPreferences.getPoints());
+                            points += 100 * finalLives;
+                            myPreferences.setPointsPlus(Integer.toString(100 * finalLives));
+                            myPreferences.savePoints(points+"", getAndroidID());
+                            Intent intent = new Intent(game_activity.this, WiningScreen.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                }, 500);
                 return true;
             }
             return false;
@@ -196,6 +228,7 @@ public class game_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
         ImageView btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(game_activity.this, MainActivity.class);

@@ -13,12 +13,24 @@ import java.util.Map;
 
 public class MyPreferences {
     public static final String key_points = "points";
+    public static final String key_pointsplus = "pointsplus";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     public static final String key_current_skin = "current_skin";
     private final SharedPreferences sharedPreferences;
 
     public MyPreferences(Context context) {
         sharedPreferences = context.getSharedPreferences("myPreferences", Context.MODE_PRIVATE);
+    }
+
+    public String getPointsPlus() {
+        return sharedPreferences.getString(key_pointsplus, "");
+    }
+
+    public void setPointsPlus(String pointsplus)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key_pointsplus, pointsplus);
+        editor.apply();
     }
 
     public String getCurrentSkin() {

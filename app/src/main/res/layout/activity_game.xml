@@ -37,14 +37,13 @@
         android:id="@+id/imageView10"
         android:layout_width="403dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
+        android:scaleX="1.2"
         android:src="@drawable/cropped"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         app:srcCompat="@drawable/cropped"
-        tools:srcCompat="@drawable/cropped"
-        android:scaleX="1.2"/>
+        tools:srcCompat="@drawable/cropped" />
 
     <TextView
         android:id="@+id/alreadyGuessedWords"
@@ -98,43 +97,15 @@
 
     <TextView
         android:id="@+id/txtBoxWordToBeGuessed"
-        android:layout_width="367dp"
-        android:layout_height="87dp"
+        android:layout_width="370dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="30dp"
         android:textAlignment="center"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="367dp"
-        android:layout_height="98dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintHorizontal_bias="0.447"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/txtBoxWordToBeGuessed">
-
-        <ImageView
-            android:id="@+id/imageBoat"
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="0dp"
-            android:contentDescription="@string/contentDescImageTChest"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/default_ship"
-            tools:srcCompat="@drawable/default_ship" />
-
-        <ImageView
-            android:id="@+id/imageChest"
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="185dp"
-            android:contentDescription="@string/contentDescImageTChest"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/treasurechest" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/txtBoxLives" />
 
     <TextView
         android:id="@+id/textView2"
@@ -162,6 +133,34 @@
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="370dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBoxWordToBeGuessed">
+
+        <ImageView
+            android:id="@+id/imageBoat"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/kids" />
+
+        <ImageView
+            android:id="@+id/imageChest"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/pngfind_com_treasure_box_png_3719839" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

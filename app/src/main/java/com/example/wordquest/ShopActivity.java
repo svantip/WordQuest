@@ -71,8 +71,10 @@ public class ShopActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot document : documents) {
                         skinList.add(Objects.requireNonNull(document.get("skin")).toString());
                     }
-                    updateButtonStateLol(); // Call a method to update button visibility and behavior
+                    updateButtonStateLol();
                     updateButtonStateFisherman();
+                    updateButtonStatePC();
+                    updateButtonStateKids();
                 } else {
                     Log.d(TAG, "Document boat doesn't exist");
                 }
@@ -186,6 +188,178 @@ public class ShopActivity extends AppCompatActivity {
         }
     }
 
+    private void updateButtonStatePC() {
+
+        Button btnApplyPC = findViewById(R.id.btnApplyPC);
+        Button btnBuyPC = findViewById(R.id.btnBuyPC);
+
+        if (skinList.contains(button_skin.get("d"))) {
+            // Skin has been bought, change button
+            btnBuyPC.setVisibility(View.GONE);
+            btnApplyPC.setVisibility(View.VISIBLE);
+
+            btnApplyPC.setOnClickListener(v -> {
+                myPreferences.setCurrentSkin(button_skin.get("d"));
+                builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
+                builder.show();
+            });
+
+        } else {
+            btnBuyPC.setVisibility(View.VISIBLE);
+            btnApplyPC.setVisibility(View.GONE);
+
+            btnBuyPC.setOnClickListener(v -> {
+                int price = 1000;
+                String imageName = "pc";
+                if (price <= Integer.parseInt(myPreferences.getPoints())) {
+                    Log.d(TAG, "Player has enough gold");
+                    int points = Integer.parseInt(myPreferences.getPoints());
+                    points -= price;
+
+                    myPreferences.savePoints(String.valueOf(points), getAndroidID());
+                    myPreferences.saveSkinToDb(imageName, getAndroidID());
+
+                    builder.setMessage("Your skin was bought successfully!").setTitle(getTitle());
+
+                    TextView textViewGold = findViewById(R.id.textViewGold);
+                    textViewGold.setText(myPreferences.getPoints());
+
+                    checkDbForBoats();
+
+                    builder.show();
+
+                    // Update button visibility and behavior
+                    btnBuyPC.setVisibility(View.GONE);
+                    btnApplyPC.setVisibility(View.VISIBLE);
+
+                    btnApplyPC.setOnClickListener(v2 -> {
+                        myPreferences.setCurrentSkin(button_skin.get("d"));
+                        builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
+                        builder.show();
+                    });
+                } else {
+                    builder.setMessage("You don't have enough gold!").setTitle(getTitle());
+                    builder.show();
+                }
+            });
+        }
+    }
+
+    private void updateButtonStateKids() {
+
+        Button btnApplyKids = findViewById(R.id.btnApplyKids);
+        Button btnBuyKids = findViewById(R.id.btnBuyKids);
+
+        if (skinList.contains(button_skin.get("e"))) {
+            // Skin has been bought, change button
+            btnBuyKids.setVisibility(View.GONE);
+            btnApplyKids.setVisibility(View.VISIBLE);
+
+            btnApplyKids.setOnClickListener(v -> {
+                myPreferences.setCurrentSkin(button_skin.get("e"));
+                builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
+                builder.show();
+            });
+
+        } else {
+            btnBuyKids.setVisibility(View.VISIBLE);
+            btnApplyKids.setVisibility(View.GONE);
+
+            btnBuyKids.setOnClickListener(v -> {
+                int price = 1000;
+                String imageName = "kids";
+                if (price <= Integer.parseInt(myPreferences.getPoints())) {
+                    Log.d(TAG, "Player has enough gold");
+                    int points = Integer.parseInt(myPreferences.getPoints());
+                    points -= price;
+
+                    myPreferences.savePoints(String.valueOf(points), getAndroidID());
+                    myPreferences.saveSkinToDb(imageName, getAndroidID());
+
+                    builder.setMessage("Your skin was bought successfully!").setTitle(getTitle());
+
+                    TextView textViewGold = findViewById(R.id.textViewGold);
+                    textViewGold.setText(myPreferences.getPoints());
+
+                    checkDbForBoats();
+
+                    builder.show();
+
+                    // Update button visibility and behavior
+                    btnBuyKids.setVisibility(View.GONE);
+                    btnApplyKids.setVisibility(View.VISIBLE);
+
+                    btnApplyKids.setOnClickListener(v2 -> {
+                        myPreferences.setCurrentSkin(button_skin.get("e"));
+                        builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
+                        builder.show();
+                    });
+                } else {
+                    builder.setMessage("You don't have enough gold!").setTitle(getTitle());
+                    builder.show();
+                }
+            });
+        }
+    }
+
+    private void updateButtonStateOP() {
+
+        Button btnApplyOP = findViewById(R.id.btnApply1P);
+        Button btnBuyOP = findViewById(R.id.btnBuy1P);
+
+        if (skinList.contains(button_skin.get("f"))) {
+            // Skin has been bought, change button
+            btnBuyOP.setVisibility(View.GONE);
+            btnApplyOP.setVisibility(View.VISIBLE);
+
+            btnApplyOP.setOnClickListener(v -> {
+                myPreferences.setCurrentSkin(button_skin.get("f"));
+                builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
+                builder.show();
+            });
+
+        } else {
+            btnBuyOP.setVisibility(View.VISIBLE);
+            btnApplyOP.setVisibility(View.GONE);
+
+            btnBuyOP.setOnClickListener(v -> {
+                int price = 1000000;
+                String imageName = "op";
+                if (price <= Integer.parseInt(myPreferences.getPoints())) {
+                    Log.d(TAG, "Player has enough gold");
+                    int points = Integer.parseInt(myPreferences.getPoints());
+                    points -= price;
+
+                    myPreferences.savePoints(String.valueOf(points), getAndroidID());
+                    myPreferences.saveSkinToDb(imageName, getAndroidID());
+
+                    builder.setMessage("Your skin was bought successfully!").setTitle(getTitle());
+
+                    TextView textViewGold = findViewById(R.id.textViewGold);
+                    textViewGold.setText(myPreferences.getPoints());
+
+                    checkDbForBoats();
+
+                    builder.show();
+
+                    // Update button visibility and behavior
+                    btnBuyOP.setVisibility(View.GONE);
+                    btnApplyOP.setVisibility(View.VISIBLE);
+
+                    btnApplyOP.setOnClickListener(v2 -> {
+                        myPreferences.setCurrentSkin(button_skin.get("f"));
+                        builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
+                        builder.show();
+                    });
+                } else {
+                    builder.setMessage("You don't have enough gold!").setTitle(getTitle());
+                    builder.show();
+                }
+            });
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,6 +367,9 @@ public class ShopActivity extends AppCompatActivity {
         button_skin.put("a", "default_ship");
         button_skin.put("b", "lol");
         button_skin.put("c", "fisherman");
+        button_skin.put("d", "pc");
+        button_skin.put("e", "kids");
+        button_skin.put("f", "op");
 
         myPreferences = new MyPreferences(this);
         setContentView(R.layout.activity_shop);
