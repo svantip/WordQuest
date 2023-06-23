@@ -75,6 +75,7 @@ public class ShopActivity extends AppCompatActivity {
                     updateButtonStateFisherman();
                     updateButtonStatePC();
                     updateButtonStateKids();
+                    updateButtonStateOP();
                 } else {
                     Log.d(TAG, "Document boat doesn't exist");
                 }
