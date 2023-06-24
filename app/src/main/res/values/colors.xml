@@ -4,7 +4,6 @@
     <color name="bgColor">#e9cd8c</color>
     <color name="btnColor">#525554</color>
     <color name="btnTextColor">#ffffff</color>
-    <color name="bgColorGame">#8ca8e9</color>
     <color name="btnBuy">#ffc052</color>
     <color name="btnApply">#50C878</color>
 </resources>

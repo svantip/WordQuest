@@ -73,7 +73,6 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/imageView9"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/default_boat_desc"
@@ -125,7 +124,6 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/imageView91"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/shop_default_skin"
@@ -188,7 +186,6 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/imageView92"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/shop_fisherman_skin"
@@ -250,7 +247,6 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/imageViewPC"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/shop_fisherman_skin"
@@ -312,7 +308,6 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/imageViewKids"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/shop_fisherman_skin"
@@ -374,7 +369,6 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/imageView1P"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/shop_fisherman_skin"

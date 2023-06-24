@@ -89,7 +89,6 @@
         app:strokeWidth="3.5dp" />
 
     <ImageView
-        android:id="@+id/imageView4"
         android:layout_width="338dp"
         android:layout_height="110dp"
         android:contentDescription="@string/contentDescImageTChest"

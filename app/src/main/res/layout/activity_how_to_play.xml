@@ -29,7 +29,6 @@
         app:srcCompat="@drawable/cropped" />
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="342dp"
         android:layout_height="392dp"
         android:layout_marginStart="56dp"

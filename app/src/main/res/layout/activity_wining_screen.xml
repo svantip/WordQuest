@@ -70,7 +70,6 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
     <ImageView
-        android:id="@+id/imageView12"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewGoldPlus"
@@ -82,7 +81,6 @@
         app:srcCompat="@drawable/icons8_coin_64" />
 
     <TextView
-        android:id="@+id/textView7"
         android:layout_width="54dp"
         android:layout_height="70dp"
         android:layout_marginStart="28dp"
