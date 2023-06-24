@@ -32,7 +32,7 @@ public class TestC {
             Thread interactionThread = new Thread(() -> {
                 for (int i = 0; i < 5; i++) {
                     Espresso.onView(withId(R.id.txtBoxGuess))
-                            .perform(ViewActions.typeText(String.valueOf("x")));
+                            .perform(ViewActions.typeText("x"));
                     Espresso.onView(withId(R.id.txtBoxGuess))
                             .perform(ViewActions.pressImeActionButton());
                 }

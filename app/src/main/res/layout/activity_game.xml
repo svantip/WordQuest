@@ -35,8 +35,9 @@
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="403dp"
-        android:layout_height="wrap_content"
+        android:layout_width="410dp"
+        android:layout_height="704dp"
+        android:layout_marginTop="10dp"
         android:scaleX="1.2"
         android:src="@drawable/cropped"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,11 +58,11 @@
         android:id="@+id/txtBoxGuess"
         android:layout_width="272dp"
         android:layout_height="50dp"
-        android:layout_marginTop="175dp"
+        android:layout_marginTop="140dp"
         android:hint="@string/txtInputHint"
         android:imeOptions="actionSend"
-        android:textColor="@color/black"
         android:inputType="text"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/imageView10"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/imageView10"
@@ -151,7 +152,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/kids" />
+            app:srcCompat="@drawable/default_ship"
+            tools:srcCompat="@drawable/default_ship" />
 
         <ImageView
             android:id="@+id/imageChest"

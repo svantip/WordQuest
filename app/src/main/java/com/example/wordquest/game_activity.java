@@ -157,10 +157,11 @@ public class game_activity extends AppCompatActivity {
                     builder.show();//Show alert
                 }else{
                     //Input is a string
-                    hiddenWord1 = word;
-                    wordToBeGuessed.setText(hiddenWord1);
-                    if(userInput.equals(word)) win = true;
-                    else{
+                    if(userInput.equals(word)){
+                        win = true;
+                        hiddenWord1 = word;
+                        wordToBeGuessed.setText(hiddenWord1);
+                    } else{
                         alreadyGuessedWords+=userInput+" ";
                         alreadyGuessedWordsView.setText(alreadyGuessedWords);
                         lives--; //Lives -1
