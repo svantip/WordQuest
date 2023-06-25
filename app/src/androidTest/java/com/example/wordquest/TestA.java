@@ -24,7 +24,7 @@ public class TestA {
     public void testLose() throws InterruptedException {
         init();
 
-        for (int i =0;i<5;i++){
+        for (int i =0;i<7;i++){
             onView(withId(R.id.txtBoxGuess)).perform(typeText(String.valueOf("x")));
             onView(withId(R.id.txtBoxGuess)).perform(pressImeActionButton());
         }

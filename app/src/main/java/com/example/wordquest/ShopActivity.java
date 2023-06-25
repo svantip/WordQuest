@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -62,6 +63,7 @@ public class ShopActivity extends AppCompatActivity {
     }
 
     public void checkDbForBoats() {
+        Button btnApplyDefaultShip = findViewById(R.id.a);
         CollectionReference ref = db.collection("players").document(getAndroidID()).collection("boats");
         ref.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -70,6 +72,13 @@ public class ShopActivity extends AppCompatActivity {
                     skinList.clear(); // Clear the list before populating it
                     for (QueryDocumentSnapshot document : documents) {
                         skinList.add(Objects.requireNonNull(document.get("skin")).toString());
+                    }
+                    if (myPreferences.getCurrentSkin().equals(button_skin.get("a"))){
+                        btnApplyDefaultShip.setText("APPLIED");
+                        btnApplyDefaultShip.setEnabled(false);
+                    }else{
+                        btnApplyDefaultShip.setText("APPLY");
+                        btnApplyDefaultShip.setEnabled(true);
                     }
                     updateButtonStateLol();
                     updateButtonStateFisherman();
@@ -93,11 +102,22 @@ public class ShopActivity extends AppCompatActivity {
             // Skin has been bought, change button
             btnBuyLol.setVisibility(View.GONE);
             btnApplyLol.setVisibility(View.VISIBLE);
+
             btnApplyLol.setOnClickListener(v -> {
                 myPreferences.setCurrentSkin(button_skin.get("b"));
                 builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
                 builder.show();
+                checkDbForBoats();
             });
+
+            if (myPreferences.getCurrentSkin().equals(button_skin.get("b"))){
+                btnApplyLol.setText("APPLIED");
+                btnApplyLol.setEnabled(false);
+            }else{
+                btnApplyLol.setText("APPLY");
+                btnApplyLol.setEnabled(true);
+            }
+
         } else {
             btnBuyLol.setVisibility(View.VISIBLE);
             btnApplyLol.setVisibility(View.GONE);
@@ -146,8 +166,16 @@ public class ShopActivity extends AppCompatActivity {
                 myPreferences.setCurrentSkin(button_skin.get("c"));
                 builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
                 builder.show();
+                checkDbForBoats();
             });
 
+            if (myPreferences.getCurrentSkin().equals(button_skin.get("c"))){
+                btnApplyFisherman.setText("APPLIED");
+                btnApplyFisherman.setEnabled(false);
+            }else{
+                btnApplyFisherman.setText("APPLY");
+                btnApplyFisherman.setEnabled(true);
+            }
         } else {
             btnBuyFisherman.setVisibility(View.VISIBLE);
             btnApplyFisherman.setVisibility(View.GONE);
@@ -203,7 +231,16 @@ public class ShopActivity extends AppCompatActivity {
                 myPreferences.setCurrentSkin(button_skin.get("d"));
                 builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
                 builder.show();
+                checkDbForBoats();
             });
+
+            if (myPreferences.getCurrentSkin().equals(button_skin.get("d"))){
+                btnApplyPC.setText("APPLIED");
+                btnApplyPC.setEnabled(false);
+            }else{
+                btnApplyPC.setText("APPLY");
+                btnApplyPC.setEnabled(true);
+            }
 
         } else {
             btnBuyPC.setVisibility(View.VISIBLE);
@@ -260,7 +297,16 @@ public class ShopActivity extends AppCompatActivity {
                 myPreferences.setCurrentSkin(button_skin.get("e"));
                 builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
                 builder.show();
+                checkDbForBoats();
             });
+
+            if (myPreferences.getCurrentSkin().equals(button_skin.get("e"))){
+                btnApplyKids.setText("APPLIED");
+                btnApplyKids.setEnabled(false);
+            }else{
+                btnApplyKids.setText("APPLY");
+                btnApplyKids.setEnabled(true);
+            }
 
         } else {
             btnBuyKids.setVisibility(View.VISIBLE);
@@ -317,7 +363,16 @@ public class ShopActivity extends AppCompatActivity {
                 myPreferences.setCurrentSkin(button_skin.get("f"));
                 builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
                 builder.show();
+                checkDbForBoats();
             });
+
+            if (myPreferences.getCurrentSkin().equals(button_skin.get("f"))){
+                btnApplyOP.setText("APPLIED");
+                btnApplyOP.setEnabled(false);
+            }else{
+                btnApplyOP.setText("APPLY");
+                btnApplyOP.setEnabled(true);
+            }
 
         } else {
             btnBuyOP.setVisibility(View.VISIBLE);
@@ -393,6 +448,7 @@ public class ShopActivity extends AppCompatActivity {
             myPreferences.setCurrentSkin("default_ship");
             builder.setMessage("Your skin was set successfully!").setTitle(getTitle());
             builder.show();
+            checkDbForBoats();
         });
 
         checkDbForBoats();
