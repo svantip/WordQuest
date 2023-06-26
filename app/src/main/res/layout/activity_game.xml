@@ -125,7 +125,7 @@
     <TextView
         android:id="@+id/txtBoxLives"
         android:layout_width="69dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="7"
         android:textAlignment="center"

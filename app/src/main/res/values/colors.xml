@@ -5,5 +5,6 @@
     <color name="btnColor">#525554</color>
     <color name="btnTextColor">#ffffff</color>
     <color name="btnBuy">#ffc052</color>
-    <color name="btnApply">#50C878</color>
+    <color name="btnApplied">#50C878</color>
+    <color name="btnApply">#1fa8df</color>
 </resources>

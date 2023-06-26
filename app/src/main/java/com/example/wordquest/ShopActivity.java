@@ -74,9 +74,11 @@ public class ShopActivity extends AppCompatActivity {
                     }
                     if (myPreferences.getCurrentSkin().equals(button_skin.get("a"))){
                         btnApplyDefaultShip.setText("APPLIED");
+                        btnApplyDefaultShip.setBackgroundColor(getApplicationContext().getColor(R.color.btnApplied));
                         btnApplyDefaultShip.setEnabled(false);
                     }else{
                         btnApplyDefaultShip.setText("APPLY");
+                        btnApplyDefaultShip.setBackgroundColor(getApplicationContext().getColor(R.color.btnApply));
                         btnApplyDefaultShip.setEnabled(true);
                     }
                     updateButtonStateLol();
@@ -111,9 +113,11 @@ public class ShopActivity extends AppCompatActivity {
 
             if (myPreferences.getCurrentSkin().equals(button_skin.get("b"))){
                 btnApplyLol.setText("APPLIED");
+                btnApplyLol.setBackgroundColor(getApplicationContext().getColor(R.color.btnApplied));
                 btnApplyLol.setEnabled(false);
             }else{
                 btnApplyLol.setText("APPLY");
+                btnApplyLol.setBackgroundColor(getApplicationContext().getColor(R.color.btnApply));
                 btnApplyLol.setEnabled(true);
             }
 
@@ -170,9 +174,11 @@ public class ShopActivity extends AppCompatActivity {
 
             if (myPreferences.getCurrentSkin().equals(button_skin.get("c"))){
                 btnApplyFisherman.setText("APPLIED");
+                btnApplyFisherman.setBackgroundColor(getApplicationContext().getColor(R.color.btnApplied));
                 btnApplyFisherman.setEnabled(false);
             }else{
                 btnApplyFisherman.setText("APPLY");
+                btnApplyFisherman.setBackgroundColor(getApplicationContext().getColor(R.color.btnApply));
                 btnApplyFisherman.setEnabled(true);
             }
         } else {
@@ -235,9 +241,11 @@ public class ShopActivity extends AppCompatActivity {
 
             if (myPreferences.getCurrentSkin().equals(button_skin.get("d"))){
                 btnApplyPC.setText("APPLIED");
+                btnApplyPC.setBackgroundColor(getApplicationContext().getColor(R.color.btnApplied));
                 btnApplyPC.setEnabled(false);
             }else{
                 btnApplyPC.setText("APPLY");
+                btnApplyPC.setBackgroundColor(getApplicationContext().getColor(R.color.btnApply));
                 btnApplyPC.setEnabled(true);
             }
 
@@ -301,9 +309,11 @@ public class ShopActivity extends AppCompatActivity {
 
             if (myPreferences.getCurrentSkin().equals(button_skin.get("e"))){
                 btnApplyKids.setText("APPLIED");
+                btnApplyKids.setBackgroundColor(getApplicationContext().getColor(R.color.btnApplied));
                 btnApplyKids.setEnabled(false);
             }else{
                 btnApplyKids.setText("APPLY");
+                btnApplyKids.setBackgroundColor(getApplicationContext().getColor(R.color.btnApply));
                 btnApplyKids.setEnabled(true);
             }
 
@@ -367,9 +377,11 @@ public class ShopActivity extends AppCompatActivity {
 
             if (myPreferences.getCurrentSkin().equals(button_skin.get("f"))){
                 btnApplyOP.setText("APPLIED");
+                btnApplyOP.setBackgroundColor(getApplicationContext().getColor(R.color.btnApplied));
                 btnApplyOP.setEnabled(false);
             }else{
                 btnApplyOP.setText("APPLY");
+                btnApplyOP.setBackgroundColor(getApplicationContext().getColor(R.color.btnApply));
                 btnApplyOP.setEnabled(true);
             }
 
