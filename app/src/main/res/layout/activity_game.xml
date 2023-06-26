@@ -48,7 +48,7 @@
 
     <TextView
         android:id="@+id/alreadyGuessedWords"
-        android:layout_width="207dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintStart_toEndOf="@+id/textView5"
